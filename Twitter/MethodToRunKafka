@@ -1,0 +1,35 @@
+Run Method
+
+bin/zookeeper-server-start.sh config/zookeeper.properties > zoo.log &
+ 
+bin/kafka-server-start.sh config/server.properties > ser0.log &
+
+bin/kafka-server-start.sh config/server-1.properties > ser1.log &
+
+bin/kafka-server-start.sh config/server-2.properties > ser2.log &
+
+bin/kafka-server-start.sh config/server-3.properties > ser3.log &
+
+bin/kafka-server-start.sh config/server-4.properties > ser4.log &
+
+
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 2 --partitions 3 --topic twitterdata1
+
+bin/kafka-topics.sh --describe --bootstrap-server localhost:9092 --topic twitterdata1
+
+
+
+
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic Topic1
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic Topic1 --from-beginning
+
+bin/kafka-topics.sh --zookeeper localhost:2181 --delete --topic test
+
+
+/home/sarath/sarath_kafka/kafka_2/config/connect-standalone.properties
+/home/sarath/sarath_kafka/kafka_2/offset-logs/
